@@ -1,0 +1,27 @@
+{
+  "title": "Autonomous Lead Dossier Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "domains": {
+      "title": "Target Domains",
+      "type": "array",
+      "description": "List of company domains to analyze (e.g. gymshark.com, cal.com, allbirds.com)",
+      "prefill": ["gymshark.com", "allbirds.com"],
+      "editor": "stringList"
+    },
+    "pitchContext": {
+      "title": "Pitch Context / Offer (Optional)",
+      "type": "string",
+      "description": "Your service or offer to tailor the pitches towards (e.g. server-side tracking, CRO audit, dev agency)",
+      "editor": "textfield"
+    },
+    "apiKey": {
+      "title": "Neon Dossier License Key (Optional)",
+      "type": "string",
+      "description": "Provide a Neon license key to unmask full cold email pitch copy. Leave blank for preview dossiers.",
+      "editor": "textfield"
+    }
+  },
+  "required": ["domains"]
+}

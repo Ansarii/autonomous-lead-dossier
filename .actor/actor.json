@@ -1,0 +1,13 @@
+{
+  "actorSpecification": 1,
+  "name": "autonomous-lead-dossier",
+  "title": "Company Tech Stack & B2B Sales Intelligence Dossier",
+  "description": "Detect any company's tech stack (Cloud, CRM, Frontend, Payment Gateway) and generate customized B2B sales pitches and competitor intelligence in seconds.",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "ts-crawlee-cheerio"
+  },
+  "dockerfile": "./Dockerfile",
+  "input": "./input_schema.json",
+  "output": "./output_schema.json"
+}
