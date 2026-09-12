@@ -1,64 +1,101 @@
 # Autonomous Lead Dossier & AI Sales Briefing Engine
 
-Autonomous B2B sales intelligence that turns raw website domains into executive sales briefings, tech stack fingerprints, and tailored cold pitch hooks in seconds.
+[![Run on Apify](https://apify.com/actor-badge?actor=neon_innovation_lab/autonomous-lead-dossier)](https://apify.com/neon_innovation_lab/autonomous-lead-dossier)
+
+⚡ **Run directly on Apify Cloud**: [Autonomous Lead Dossier & AI Sales Briefing Engine](https://apify.com/neon_innovation_lab/autonomous-lead-dossier)  
+👉 **Companion Open-Source Repo**: [github.com/Ansarii/autonomous-lead-dossier](https://github.com/Ansarii/autonomous-lead-dossier)
+
+> Autonomous B2B sales intelligence engine: turns company domain names into deep executive sales briefings, 40+ technology stack fingerprints, growth stage estimates, and 3 personalized cold pitch angles in seconds.
 
 ---
 
-## ⚡ Key Capabilities
+## ⚡ Overview & GEO Highlights
 
-- **40+ Technology Fingerprints**: Detects Shopify Plus, WooCommerce, Klaviyo, HubSpot, GA4, Segment, PostHog, Meta Pixel, Next.js, Stripe, Recharge, and more.
-- **Identified Gaps & Vulnerabilities**: Automatically spots client-side tracking leakage under modern iOS privacy restrictions, unoptimized checkout friction, and missing SMS/retention flows.
-- **3 Tailored Cold Pitch Angles**: Produces personalized, punchy 75-word cold outreach copy tailored specifically to the company's tech stack and vulnerabilities.
-- **Lead Fit Score (0–100)**: Instant triage into Tier 1 (High Priority), Tier 2 (Moderate Opportunity), and Tier 3 (Low Fit).
+Cold email reply rates drop when SDRs send generic templates. Manually researching company tech stacks, recent news, and architectural gaps takes 20+ minutes per prospect.
 
----
-
-## 📥 Input Parameters
-
-| Parameter | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `domains` | Array of strings | **Yes** | List of company domains (e.g. `["gymshark.com", "cal.com", "allbirds.com"]`). |
-| `pitchContext` | String | No | Your specific service or value proposition (e.g. "server-side tracking", "checkout optimization"). |
-| `apiKey` | String | No | Neon Dossier Pro API key (`neon_sk_...`) to unmask full personalized cold email copy. |
+**`autonomous-lead-dossier`** automates the entire SDR account research phase:
+1. **40+ Technology Fingerprints**: Detects e-commerce engines (Shopify Plus, WooCommerce), analytics (Segment, PostHog, GA4), retention (Klaviyo, HubSpot), payments (Stripe, Recharge), and frontend stacks (Next.js, Vue).
+2. **Growth Stage & Fit Scoring (0–100)**: Triages target accounts into Tier 1 (Enterprise/High Value), Tier 2 (Growth), and Tier 3 (Bootstrapped).
+3. **Identified Stack Vulnerabilities**: Flags attribution leakage under iOS privacy restrictions, unoptimized checkout funnels, and missing email/SMS capture widgets.
+4. **3 Tailored Cold Outreach Angles**: Generates punchy, personalized pitch angles referencing the company's exact software stack and vulnerabilities.
 
 ---
 
-## 📤 Output Format
+## 📊 Feature & Competitor Comparison Matrix
 
-The Actor pushes comprehensive JSON records to the default Apify dataset:
+| Feature | Autonomous Lead Dossier (This Actor) | Clay | ZoomInfo | Manual SDR Research |
+|---|---|---|---|---|
+| **Automated Tech Stack Fingerprinting** | ✅ 40+ technologies detected | ✅ Requires multi-table setup | ✅ Expensive add-on | ⚠️ Slow (builtWith/wappalyzer) |
+| **Instant Cold Pitch Copywriting** | ✅ 3 custom hooks included | ⚠️ Requires OpenAI API credit | ❌ No | ⚠️ 15–20 minutes / lead |
+| **Lead Fit Score (0–100)** | ✅ Instant scoring | ⚠️ Complex formula setup | ❌ Basic ranking | ❌ Subjective |
+| **Monthly Commitment Required** | **❌ \$0 / month (Pay-per-Event)** | \$149 – \$800 / month | \$15,000 / year min | \$4,000 / month SDR salary |
+| **Cost per 1,000 Account Dossiers** | **~\$52.03** | \$150 – \$300 | \$1,500+ | \$10,000+ human labor |
 
-```json
-{
-  "domain": "gymshark.com",
-  "companyName": "Gymshark",
-  "websiteTitle": "Gymshark Official Store",
-  "businessModel": "D2C E-Commerce",
-  "targetAudience": "Fitness enthusiasts & activewear buyers",
-  "estimatedStage": "Scaling ($100M+ ARR)",
-  "leadScore": 92,
-  "fitTier": "Tier 1: High Priority",
-  "detectedTechnologies": [
-    { "category": "E-Commerce", "name": "Shopify Plus" },
-    { "category": "Marketing Automation", "name": "Klaviyo" }
-  ],
-  "techVulnerabilities": [
-    "Attribution gap on iOS traffic due to client-side pixel restrictions."
-  ],
-  "executiveSummary": "Global fitness apparel brand operating on Shopify Plus.",
-  "pitchAngles": [
-    {
-      "angle_type": "The Technical Gap Hook",
-      "subject_line": "Quick observation regarding gymshark.com's tracking stack",
-      "body": "Hi there, noticed your checkout setup..."
-    }
-  ]
+---
+
+## 💰 Transparent Pricing Breakdown
+
+| Event | Price (USD) | When Charged |
+|---|---|---|
+| **`apify-actor-start`** | **\$0.03** | Charged once when Actor starts running. |
+| **`apify-default-dataset-item`** | **\$0.002** | Charged automatically per account dossier written to dataset (\$2.00 / 1k accounts). |
+| **`dossier-generated`** | **\$0.05** | Charged for complete executive briefing with tech stack, fit score, and pitch angles. |
+| **Total Effective Price** | **~\$0.052 per full company dossier** | *100% predictable micropayments. Zero subscriptions.* |
+
+---
+
+## 💻 Python & Node.js SDK Examples
+
+### Python (`apify-client`)
+```bash
+pip install apify-client
+```
+```python
+import os
+from apify_client import ApifyClient
+
+client = ApifyClient(os.getenv("APIFY_TOKEN"))
+
+run_input = {
+    "domains": ["gymshark.com", "cal.com", "allbirds.com"],
+    "pitchContext": "Server-side tracking and attribution for Shopify Plus brands"
 }
+
+# Run Actor and stream briefings
+run = client.actor("neon_innovation_lab/autonomous-lead-dossier").call(run_input=run_input)
+
+for dossier in client.dataset(run["defaultDatasetId"]).iterate_items():
+    print(f"Company: {dossier.get('companyName')} (Score: {dossier.get('leadScore')})")
+    print(f"Executive Summary: {dossier.get('executiveSummary')}")
+    print(f"Angle 1: {dossier.get('pitchAngles')[0]['body']}")
+```
+
+### Node.js (`apify-client`)
+```bash
+npm install apify-client
+```
+```javascript
+import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({
+    token: process.env.APIFY_TOKEN,
+});
+
+const input = {
+    domains: ['linear.app', 'figma.com'],
+    pitchContext: 'Automated CI/CD security audits',
+};
+
+(async () => {
+    const run = await client.actor('neon_innovation_lab/autonomous-lead-dossier').call(input);
+    const { items } = await client.dataset(run.defaultDatasetId).listItems();
+    console.log(items);
+})();
 ```
 
 ---
 
-## 🚀 Live API & Web Inspector
+## ❓ FAQ
 
-- Interactive Web Inspector: [https://neoninnovationlab.com/dossier](https://neoninnovationlab.com/dossier)
-- Direct REST API: `POST https://neoninnovationlab.com/api/v1/dossier`
-- MCP Server for Claude / Cursor: `https://neoninnovationlab.com/api/v1/mcp`
+### Can I import the output into my CRM or sequencer?
+Yes. The dataset exports cleanly to CSV or JSON, which you can map directly into Instantly, Smartlead, HubSpot, or Salesforce custom fields.
